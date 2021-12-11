@@ -19,6 +19,14 @@ Langkah 1 yaitu membuat topologi jaringan sesuai dengan modul
   * Jumlah Host pada Elena adalah 300 host
   * Jumlah Host pada Fukurou adalah 200 host
 
+## Soal B
+Luffy ingin meminta kalian untuk membuat topologi tersebut menggunakan teknik CIDR atau VLSM. setelah melakukan subnetting,
+Disini kami menggunakan teknik VLSM. Dari hasil pembagian subnet, kami mendapatkan sejumlah 8 subnet yang terdiri atas 6 subnet untuk router-router dan router-client (A1, A2, A3, A4,A5,A6) dan 2 subnet untuk router-server (A7 dan A8) Seperti gambar berikut ini. 
+
+![Frame 1 (1)](![image](https://user-images.githubusercontent.com/75864703/145680416-661a3213-ce9a-4422-a26f-832bc3ca473f.png)
+![image](https://user-images.githubusercontent.com/75864703/145680433-232aa964-4a2c-41a8-8ef4-31a7111e98bd.png)
+
+
 
 1. Foosha
 ```
