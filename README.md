@@ -322,7 +322,7 @@ iptables -A INPUT -s 192.213.4.0/22 -m time --timestart 15:01 --timestop 23:59 -
 # blueno
 iptables -A INPUT -s 192.213.0.128/25 -m time --weekdays Fri,Sat,Sun -j REJECT
 iptables -A INPUT -s 192.213.0.128/25 -m time --timestart 00:00 --timestop 06:59 --weekdays Mon,Tue,Wed,Thu -j REJECT
-iptables -A INPUT -s 192.2130.128/25 -m time --timestart 15:01 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu -j REJECT
+iptables -A INPUT -s 192.213.0.128/25 -m time --timestart 15:01 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu -j REJECT
 ```
 
 - Di sini kami menggunakan ```-A INPUT``` untuk menyaring paket yang masuk dari ```-s 192.213.4.0/22``` subnet CIPHER dan 192.213.0.128/25 subnet BLUENO
