@@ -7,7 +7,7 @@
 
 ---
 #  TOPOLOGI
-(https://cdn.discordapp.com/attachments/811534608800677891/919227550734098512/unknown.png)
+![image](https://cdn.discordapp.com/attachments/811534608800677891/919227550734098512/unknown.png)
 
 **Dengan Keterangan**
   * Doriki adalah DNS Server
