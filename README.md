@@ -344,7 +344,7 @@ Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga p
 iptables -A INPUT -s 192.213.2.0/23 -m time --timestart 07:00 --timestop 15:00 -j REJECT
 
 iptables -A INPUT -s 192.213.1.0/24 -m time --timestart 07:00 --timestop 15:00 -j REJECT
-```
+
 Di sini digunakan ```-A INPUT``` untuk menyaring paket yang masuk dari ```-s 192.213.2.0/23``` subnet ELENA dan ```192.213.1.0/24``` subnet Fukurou ```-m time --timestart 07:00 --timestop 15:00``` di waktu jam 07:00 sampai dengan jam 15:00  di hari apapun untuk batasan aksesnya dan digunakan command ```-j REJECT``` agar ditolak jika diluar batas waktunya. 
 
 ## NO 6
@@ -353,7 +353,7 @@ Karena kita memiliki 2 Web Server, Luffy ingin Guanhao disetting sehingga setiap
 ```
 iptables -A PREROUTING -t nat -p tcp -d 192.213.0.19 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.213.0.11:80
 
-iptables -A PREROUTING -t nat -p tcp -d 192.213.0.19 -j DNAT --to-destination 192.213.0.10:80
+iptables -A PREROUTING -t nat -p tcp -d 192.213.0.19 -j DNAT --to-destination 192.213.0.10:80 
 ```
 
 Pada kasus ini kami menggunakan  Load Balancing untuk mendistribusikan koneksi. Kami menggunakan ```-A PREROUTING``` pada ```-t nat``` untuk mengubah destination IP yang awalnya menuju ke ```192.213.0.19``` DNS Server DORIKI menjadi ke ```192.213.0.11:80``` Server JORGE port 80 dan ```192.213.0.10:80``` Server MAINGATE port 80.
