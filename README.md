@@ -10,10 +10,10 @@
 
 
 **Dengan Keterangan**
-  Doriki adalah DNS Server
-		Jipangu adalah DHCP Server
-		Maingate dan Jorge adalah Web Server
-		Jumlah Host pada Blueno adalah 100 host
-		Jumlah Host pada Cipher adalah 700 host
-		Jumlah Host pada Elena adalah 300 host
-		Jumlah Host pada Fukurou adalah 200 host
+  * Doriki adalah DNS Server
+  * Jipangu adalah DHCP Server
+  * Maingate dan Jorge adalah Web Server
+  * Jumlah Host pada Blueno adalah 100 host
+  * Jumlah Host pada Cipher adalah 700 host
+  * Jumlah Host pada Elena adalah 300 host
+  * Jumlah Host pada Fukurou adalah 200 host
