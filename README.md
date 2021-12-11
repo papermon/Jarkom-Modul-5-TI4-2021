@@ -23,8 +23,8 @@ Langkah 1 yaitu membuat topologi jaringan sesuai dengan modul
 Luffy ingin meminta kalian untuk membuat topologi tersebut menggunakan teknik CIDR atau VLSM. setelah melakukan subnetting,
 Disini kami menggunakan teknik VLSM. Dari hasil pembagian subnet, kami mendapatkan sejumlah 8 subnet yang terdiri atas 6 subnet untuk router-router dan router-client (A1, A2, A3, A4,A5,A6) dan 2 subnet untuk router-server (A7 dan A8) Seperti gambar berikut ini. 
 
-![Frame 1 (1)](![image](https://user-images.githubusercontent.com/75864703/145680416-661a3213-ce9a-4422-a26f-832bc3ca473f.png)
-![image](https://user-images.githubusercontent.com/75864703/145680433-232aa964-4a2c-41a8-8ef4-31a7111e98bd.png)
+![image](https://user-images.githubusercontent.com/75864703/145680416-661a3213-ce9a-4422-a26f-832bc3ca473f.png)
+![image](https://user-images.githubusercontent.com/73151866/145680547-8401d5b0-820b-4335-a474-fb7a4657cc43.png)
 
 
 
@@ -247,11 +247,11 @@ kami menggunakan command ```-t nat``` NAT Table pada ```-A POSTROUTING chain``` 
 Untuk testing, kami mencoba kirim ping keluar pada Foosha dan Jipangu
 ### Foosha
 ```
-ping 8.8.8.8
+ping google.com
 ```
 ### Jipangu
 ```
-ping 8.8.8.8
+ping google.com
 ```
 ## NO 2
 Kalian diminta untuk mendrop semua akses HTTP dari luar Topologi kalian pada server yang memiliki ip DHCP dan DNS Server demi menjaga keamanan.
@@ -265,12 +265,12 @@ iptables -A FORWARD -d 192.213.0.16/29 -i eth0 -p tcp -m tcp --dport 80 -j DROP
 Kita menggunakan ```-A FORWARD``` untuk menyaring paket dengan``` -p tcp -m tcp``` yaitu protokol TCP dari luar topologi menuju ke DHCP Server JIPANGU dan DNS Server DORIKI (yang berada di satu subnet yang sama yaitu ```-d 192.213.0.16/29```), dimana akses SSH (yang memiliki ```--dport 80 port 80```) yang masuk ke DHCP Server JIPANGU dan DNS Server DORIKI melalui interfaces eth0 dari DHCP Server JIPANGU dan DNS Server DORIKI dengan command ```-i eth0``` untuk DROP kami gunakan command ```-j DROP```
 
 > Testing
-### Elena
+### Chiper
 ```
-nmap -p 80 192.213.2.2
+nmap -p 80 192.213.7.130
 ```
+![image](https://user-images.githubusercontent.com/73151866/145680618-86f345df-2f56-4534-943e-bc1f5e995e26.png)
 
-![](https://media.discordapp.net/attachments/854638984004239380/918751878014173245/unknown.png?width=1436&height=314)
 
 ## NO 3
 Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.
@@ -288,26 +288,26 @@ iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j
 Kita menggunakan command ```-A INPUT``` untuk menyaring paket dan command ```-p icmp``` agar protokol ICMP atau ping yang masuk dibatasi kami gunakan juga ``-m connlimit --connlimit-above 3`` yang artinya hanya sebatas maksimal 3 koneksi saja yang dapat tersambung dan command ```--connlimit-mask 0``` untuk memperbolehkan akses darimana saja, sehingga lebih dari itu akan di DROP command-j DROP
 
 
-### Elena
+### Jorge
 ```
-ping 192.213.0.18
+ping 192.213.7.130
 ```
-![](https://media.discordapp.net/attachments/854638984004239380/918751980166467604/unknown.png)
-### Fukurou
+![image](https://user-images.githubusercontent.com/73151866/145680796-ba048f60-337a-4cf3-be2f-a8b2088d72d5.png)
+### Maingate
 ```
-ping 192.213.0.18
+ping 192.213.7.130
 ```
-![](https://media.discordapp.net/attachments/854638984004239380/918752056720916520/unknown.png)
+![image](https://user-images.githubusercontent.com/73151866/145680788-19c1261b-e0ef-408b-a1ee-8971fe0b270b.png)
 ### Blueno
 ```
-ping 192.213.0.18
+ping 192.213.7.130
 ```
-![](https://media.discordapp.net/attachments/854638984004239380/918752118188437534/unknown.png)
+![image](https://user-images.githubusercontent.com/73151866/145680780-027c6272-a411-424b-8849-ac95d2394766.png)
 ### Cipher
 ```
-ping 192.213.0.18
+ping 192.213.7.130
 ```
-![](https://media.discordapp.net/attachments/854638984004239380/918752168381677578/unknown.png)
+![image](https://user-images.githubusercontent.com/73151866/145680777-0202f51c-d79b-4001-a5a9-cc9fb9cd1d2b.png)
 ## NO 4
 Akses dari subnet Blueno dan Cipher hanya diperbolehkan pada  pukul 07.00 - 15.00 pada hari Senin sampai Kamis.
 
@@ -333,8 +333,7 @@ iptables -A INPUT -s 192.2130.128/25 -m time --timestart 15:01 --timestop 23:59 
 - Dan ditambahkan command ```-A INPUT -m time --timestart 15:01 --timestop 23:59``` untuk menyaring paket di waktu jam 15:01 sampai dengan jam 23:59 ```--weekdays Mon,Tue,Wed,Thu``` pada hari Senin, Selasa, Rabu, Kamis agar ditolak dengan command ```-j REJECT```
 
 
-```
-![](https://media.discordapp.net/attachments/854638984004239380/918754090039795712/unknown.png?width=1436&height=337)
+![image](https://user-images.githubusercontent.com/73151866/145680876-68da4d6e-cbb2-443a-9ed9-fe0c1bd4c4c9.png)
 ## NO 5
 Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya.
 
@@ -344,7 +343,7 @@ Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga p
 iptables -A INPUT -s 192.213.2.0/23 -m time --timestart 07:00 --timestop 15:00 -j REJECT
 
 iptables -A INPUT -s 192.213.1.0/24 -m time --timestart 07:00 --timestop 15:00 -j REJECT
-
+```
 Di sini digunakan ```-A INPUT``` untuk menyaring paket yang masuk dari ```-s 192.213.2.0/23``` subnet ELENA dan ```192.213.1.0/24``` subnet Fukurou ```-m time --timestart 07:00 --timestop 15:00``` di waktu jam 07:00 sampai dengan jam 15:00  di hari apapun untuk batasan aksesnya dan digunakan command ```-j REJECT``` agar ditolak jika diluar batas waktunya. 
 
 ## NO 6
