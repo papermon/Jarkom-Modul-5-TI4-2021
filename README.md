@@ -7,6 +7,7 @@
 
 ---
 #  TOPOLOGI
+Langkah 1 yaitu membuat topologi jaringan sesuai dengan modul 
 ![image](https://cdn.discordapp.com/attachments/811534608800677891/919227550734098512/unknown.png)
 
 **Dengan Keterangan**
